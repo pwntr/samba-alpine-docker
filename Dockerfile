@@ -21,4 +21,4 @@ VOLUME /config /shared
 EXPOSE 445 137 138 139
 
 # set some defaults and start samba in interactive server mode, loggind to stdout, using our config
-ENTRYPOINT ["samba", "-i", "-s", "/config/smb.conf"]
+ENTRYPOINT ["smbd", "-i", "-s", "/config/smb.conf"]
