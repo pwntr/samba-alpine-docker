@@ -20,5 +20,5 @@ VOLUME /config /shared
 # exposes samba's default port 445 and the NetBIOS ports 137-139
 EXPOSE 445 137 138 139
 
-# set some defaults and start samba in interactive server mode, forked (-F) and logging to stdout, using our config
-ENTRYPOINT ["smbd", "-i", "-F", "-s", "/config/smb.conf"]
+# set some defaults and start samba in interactive server mode, forked (-F) and logging (debug level 1) to stdout, using our config
+ENTRYPOINT ["smbd", "-i", "-F", "-d", "1", "-s", "/config/smb.conf"]
