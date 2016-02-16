@@ -5,8 +5,8 @@ LABEL Description="Simple and lightweight Samba docker container, based on Alpin
 # update the base system
 RUN apk update && apk upgrade
 
-# install samba
-RUN apk add samba samba-common-tools
+# install samba and clear the cache afterwards
+RUN apk add samba samba-common-tools && rm -rf /var/cache/apk/*
 
 # create a dir for the config and the share
 RUN mkdir /config /shared
