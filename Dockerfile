@@ -2,6 +2,9 @@ FROM alpine:latest
 MAINTAINER Peter Winter <peter@pwntr.com>
 LABEL Description="Simple and lightweight Samba docker container, based on Alpine Linux." Version="0.1"
 
+# update the base system
+RUN apk update && apk upgrade
+
 # install samba
 RUN apk add samba samba-common-tools
 
