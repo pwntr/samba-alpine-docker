@@ -8,10 +8,13 @@ RUN apk update && apk upgrade
 # install samba and clear the cache afterwards
 RUN apk add samba samba-common-tools && rm -rf /var/cache/apk/*
 
+# add a system user called "samba" for share write access and a gid and uid of 1000 and no shell or home dir
+addgroup -S -g 1000 samba && adduser -S -M samba -G samba -u 1000 -s /bin/false -p changemetosomethingcrypted
+
 # create a dir for the config and the share
 RUN mkdir /config /shared
 
-# copy init files from project folder to get a default config 
+# copy init files from project folder to get a default config
 COPY smb.conf /config/smb.conf
 
 # volume mappings
