@@ -8,8 +8,11 @@ RUN apk update && apk upgrade
 # install samba and clear the cache afterwards
 RUN apk add samba samba-common-tools && rm -rf /var/cache/apk/*
 
-# add a system user called "samba" for share write access and a gid and uid of 1000 and no shell or home dir
-addgroup -S -g 1000 samba && adduser -S -M samba -G samba -u 1000 -s /bin/false -p changemetosomethingcrypted
+# add a non-root user and group called "rio" with no password, no home dir, no shell, and gid/uid set to 1000
+RUN addgroup -g 1000 rio && adduser -D -H -G rio -s /bin/false -u 1000 rio
+
+# and create a samba user matching our user from above with a simple password ("letsdance")
+RUN echo -e "letsdance\nletsdance" | smbpasswd -a -s rio
 
 # create a dir for the config and the share
 RUN mkdir /config /shared
