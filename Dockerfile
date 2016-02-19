@@ -8,17 +8,17 @@ RUN apk update && apk upgrade
 # install samba and clear the cache afterwards
 RUN apk add samba samba-common-tools && rm -rf /var/cache/apk/*
 
-# add a non-root user and group called "rio" with no password, no home dir, no shell, and gid/uid set to 1000
-RUN addgroup -g 1000 rio && adduser -D -H -G rio -s /bin/false -u 1000 rio
-
-# and create a samba user matching our user from above with a simple password ("letsdance")
-RUN echo -e "letsdance\nletsdance" | smbpasswd -a -s rio
-
 # create a dir for the config and the share
 RUN mkdir /config /shared
 
 # copy init files from project folder to get a default config
 COPY smb.conf /config/smb.conf
+
+# add a non-root user and group called "rio" with no password, no home dir, no shell, and gid/uid set to 1000
+RUN addgroup -g 1000 rio && adduser -D -H -G rio -s /bin/false -u 1000 rio
+
+# create a samba user matching our user from above with a very simple password ("letsdance")
+RUN echo -e "letsdance\nletsdance" | smbpasswd -a -s -c /config/smb.conf rio
 
 # volume mappings
 VOLUME /config /shared
