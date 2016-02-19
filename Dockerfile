@@ -24,6 +24,6 @@ RUN echo -e "letsdance\nletsdance" | smbpasswd -a -s -c /config/smb.conf rio
 VOLUME /config /shared
 
 # exposes samba's default ports
-EXPOSE 137 138 139 445
+EXPOSE 137/udp 138/udp 139 445
 
 ENTRYPOINT ["supervisord", "-c", "/config/supervisord.conf"]
