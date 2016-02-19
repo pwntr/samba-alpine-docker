@@ -1,7 +1,9 @@
 # samba-alpine
 A simple and super lightweight Samba docker container, based on the latest Alpine Linux base image 🐧🐋💻.
 
-Runs Samba's smbd and nmbd within the same container, using supervisord.
+Runs Samba's smbd and nmbd within the same container, using supervisord. Due to the fact that nmbd wants to broadcast
+and become the "local master" on your subnet, you need to supply the "--net=host" flag to make the server visible to
+picky clients like AV receivers.
 
 Quick start:
 ```shell

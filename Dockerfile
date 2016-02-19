@@ -23,7 +23,7 @@ RUN echo -e "letsdance\nletsdance" | smbpasswd -a -s -c /config/smb.conf rio
 # volume mappings
 VOLUME /config /shared
 
-# exposes samba's default ports
+# exposes samba's default ports (137, 138 for nmbd and 139, 445 for smbd)
 EXPOSE 137/udp 138/udp 139 445
 
 ENTRYPOINT ["supervisord", "-c", "/config/supervisord.conf"]
