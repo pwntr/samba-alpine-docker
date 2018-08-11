@@ -4,13 +4,13 @@ A simple and super lightweight Samba docker container, based on the latest Alpin
 By default, the share will be accessible read-only for everyone, with write access for user "rio" with password "letsdance". See smb.conf for details, or feel free to use your own config (see below).
 
 Runs Samba's smbd and nmbd within the same container, using supervisord. Due to the fact that nmbd wants to broadcast
-and become the "local master" on your subnet, you need to supply the "--network=host" flag to make the server visible to the hosts subnet (likely your LAN).
+and become the "local master" on your subnet, you need to supply the "--network host" flag to make the server visible to the hosts subnet (likely your LAN).
 
 Mapping the ports alone is likely not sufficient for proper discovery as the processes inside the container are only aware of the internal Docker network, and not the host network. Maybe there's a config switch somewhere to supply a target broadcast network?
 
 Quick start for the impatient (discovery on your network will work fine):
 ```shell
-docker run -d --network=host -v /path/to/share/:/shared --name samba pwntr/samba-alpine
+docker run -d --network host -v /path/to/share/:/shared --name samba pwntr/samba-alpine
 ```
 
 Supplying port mappings only instead of --network=host might be subject to the limtations outlined above:
