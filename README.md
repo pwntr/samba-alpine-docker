@@ -8,7 +8,7 @@ and become the "local master" on your subnet, you need to supply the "--net=host
 
 Quick start for the impatient:
 ```shell
-docker run -d --net=host -v /path/to/share/:/shared --name samba pwntr/samba-alpine
+docker run -d --network=host -v /path/to/share/:/shared --name samba pwntr/samba-alpine
 ```
 
 When NetBIOS discovery is not needed

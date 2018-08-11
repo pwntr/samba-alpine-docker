@@ -1,6 +1,7 @@
 FROM alpine:latest
-MAINTAINER Peter Winter <peter@pwntr.com>
-LABEL Description="Simple and lightweight Samba docker container, based on Alpine Linux." Version="0.1"
+LABEL MAINTAINER="Peter Winter <peter@pwntr.com>" \
+    Description="Simple and lightweight Samba docker container, based on Alpine Linux." \
+    Version="1.0.0"
 
 # update the base system
 RUN apk update && apk upgrade
