@@ -3,8 +3,8 @@ LABEL MAINTAINER="Peter Winter <peter@pwntr.com>" \
     Description="Simple and lightweight Samba docker container, based on Alpine Linux." \
     Version="1.0.1"
 
-# install samba and supervisord
-RUN apk --no-cache add samba samba-common-tools supervisor
+# upgrade base system and install samba and supervisord
+RUN apk --no-cache upgrade && apk --no-cache add samba samba-common-tools supervisor
 
 # create a dir for the config and the share
 RUN mkdir /config /shared
